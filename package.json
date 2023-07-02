@@ -1,0 +1,35 @@
+{
+  "name": "utility-framework",
+  "version": "1.0.0",
+  "description": "A modern node framework for conversion, formatting, parsing, validation, and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icapri/utility-framework.git"
+  },
+  "keywords": [
+    "node",
+    "utils",
+    "util",
+    "utility",
+    "utilities",
+    "validators",
+    "validation",
+    "parsers",
+    "parsing",
+    "converters",
+    "convertion",
+    "formatters",
+    "formatting",
+    "typecheck"
+  ],
+  "author": "Igli Kapri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icapri/utility-framework/issues"
+  },
+  "homepage": "https://github.com/icapri/utility-framework#readme"
+}
