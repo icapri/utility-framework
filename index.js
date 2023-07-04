@@ -1890,8 +1890,8 @@ var Dates = (function () {
         seconds < 60 &&
         milliseconds >= 0 &&
         milliseconds <= 999) {
-        const daysOfMonth = daysOfMonth(month, year);
-        if (day > 0 && day <= daysOfMonth) {
+        const monthDays = daysOfMonth(month, year);
+        if (day > 0 && day <= monthDays) {
           const date = new Date(year, month - 1, day, hour, minutes, seconds, milliseconds), offset = getTimezoneOffset(date);
           return new Date(date.valueOf() - offset);
         }
@@ -2130,7 +2130,7 @@ var Maps = (function () {
    * @return {Boolean} whether the specified value is of type `WeakMap`.
    */
   function isWeakMap(value) {
-    return Objects.prototype.toString.call(value) === '[object WeakMap]';
+    return Object.prototype.toString.call(value) === '[object WeakMap]';
   }
   /**
    * Converts a map to an object.
@@ -2364,9 +2364,9 @@ var Objects = (function () {
    */
   function* __entries(obj) {
     let i = 0;
-    const entries = Object.entries(obj);
-    for (; i < entries.length; i++) {
-      yield [entries[i][0], entries[i][1]];
+    const es = Object.entries(obj);
+    for (; i < es.length; i++) {
+      yield [es[i][0], es[i][1]];
     }
   }
 
@@ -2639,8 +2639,8 @@ var Objects = (function () {
    * values are their values.
    */
   function toMap(obj) {
-    const entries = entries(obj);
-    return new Map(entries);
+    const e = entries(obj);
+    return new Map(e);
   }
   /**
    * Converts an object to a set.
@@ -2671,6 +2671,7 @@ var Objects = (function () {
   }
 
   return {
+    EMPTY,
     deepEquals,
     entries,
     equals,
@@ -4931,6 +4932,7 @@ var Strings = (function () {
     isNilOrEmpty,
     isNilOrWhitespace,
     isNilOrEmpty,
+    isNotEmpty,
     isNullOrEmpty,
     isNullOrWhitespace,
     isNumeric,
@@ -5213,6 +5215,7 @@ module.exports = {
   Chars: Chars,
   Dates: Dates,
   Maps: Maps,
+  Numbers: Numbers,
   Objects: Objects,
   Sets: Sets,
   Strings: Strings,
