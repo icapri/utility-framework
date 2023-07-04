@@ -1958,6 +1958,12 @@ describe('Strings', () => {
     assert.deepEqual(Strings.reverse('🤨🤗'), '🤗🤨');
   });
 
+  it('Strings.splice()', () => {
+    assert.deepEqual(Strings.splice('', 0, 0, 'hijk'), 'hijk');
+    assert.deepEqual(Strings.splice('abcde', 1, 0, 'hijk'), 'ahijkbcde');
+    assert.deepEqual(Strings.splice('lorem ipsum dolor', 6, 5, 'amet'), 'lorem amet dolor');
+  });
+
   it('Strings.startsWith()', () => {
     assert.deepEqual(Strings.startsWith('', ''), true);
     assert.deepEqual(Strings.startsWith('abc', 'ab'), true);

@@ -4545,6 +4545,33 @@ var Strings = (function () {
     return str.length < 2 ? str : [...str].reverse().join('');
   }
   /**
+   * Replaces the string characters in the specified range by the given
+   * substring.
+   *
+   * **Usage Examples:**
+   * ```typescript
+   * Strings.splice("", 0, 0, "abc"); // "abc"
+   * Strings.splice("abcde", 1, 0, "hijk"); // "ahijkbcde"
+   * Strings.splice("lorem ipsum dolor", 6, 5, "amet"); // "lorem amet dolor"
+   * ```
+   *
+   * @param {String} str Contains a string.
+   * @param {Number} fromIndex Contains the start index at which to place the
+   * new substring.
+   * @param {Number} deleteCount Contains the number of characters to remove
+   * from the specified `fromIndex` of the specified string.
+   * @param {String} subStr Contains the new substring to be inserted between
+   * the specified indexes.
+   *
+   * @return {string} a new string with the specified sequence replaced by the
+   * new substring.
+   */
+  function splice(str, fromIndex, deleteCount, subStr) {
+    return str.slice(0, fromIndex) +
+      subStr +
+      str.slice(fromIndex + Math.abs(deleteCount));
+  }
+  /**
    * Checks whether the specified string starts with the specified substring.
    *
    * **Usage Examples:**
@@ -4956,6 +4983,7 @@ var Strings = (function () {
     removeWhitespace,
     repeat,
     reverse,
+    splice,
     startsWith,
     startsWithAny,
     toBinary,
