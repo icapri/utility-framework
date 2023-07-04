@@ -2,7 +2,7 @@
   "name": "utility-framework",
   "version": "1.0.0",
   "description": "A modern node framework for conversion, formatting, parsing, validation, and more.",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "npm run test"
   },
@@ -31,5 +31,6 @@
   "bugs": {
     "url": "https://github.com/icapri/utility-framework/issues"
   },
-  "homepage": "https://github.com/icapri/utility-framework#readme"
+  "homepage": "https://github.com/icapri/utility-framework#readme",
+  "files": ["index.js"]
 }

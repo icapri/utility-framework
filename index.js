@@ -4939,6 +4939,272 @@ var Strings = (function () {
     isSurrogatePair,
     isUpperCase,
     isWhitespace,
+    join,
+    lastIndexOf,
+    lastIndexOfIgnoreCase,
+    left,
+    longest,
+    normalize,
+    prepend,
+    prependIfMissing,
+    prependIfMissingIgnoreCase,
+    remove,
+    removeEnd,
+    removeEndIgnoreCase,
+    removeWhitespace,
+    repeat,
+    reverse,
+    startsWith,
+    startsWithAny,
+    toBinary,
+    toBytesArray,
+    toCamelCase,
+    toCharArray,
+    toConstantCase,
+    toKebabCase,
+    toPascalCase,
+    toSnakeCase,
+    toTitleCase,
+    upperFirst,
+  }
+})();
+
+/**
+ * Defines a base utility class.
+ */
+var Utils = (function () {
+  /**
+   * Checks whether the given value is of boolean type.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is of boolean type.
+   */
+  function isBoolean(value) {
+    return typeof value === 'boolean';
+  }
+  /**
+   * Checks whether the given value is defined.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is defined.
+   */
+  function isDefined(value) {
+    return isUndefined(value) === false;
+  }
+  /**
+   * Checks whether the specified value is an `Error` instance.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is an error instance.
+   */
+  function isError(value) {
+    return Objects.toString(value) === '[object Error]';
+  }
+  /**
+   * Checks whether the given value is falsy i. e.: `null`, `undefined`,
+   * `false`, `NaN`, `0`, `-0`, `0n` or `''`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is falsy.
+   */
+  function isFalsy(value) {
+    return [
+      // @ts-expect-error
+      null, undefined, false, Number.NaN, 0, -0, 0n, '',
+    ].includes(value);
+  }
+  /**
+   * Checks whether the specified value is a `File` instance.
+   *
+   * **Usage Examples:**
+   * ```typescript
+   * Utils.isFile(null); // false
+   * Utils.isFile(new File([], "abc")); // true
+   * ```
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a `File` instance.
+   */
+  function isFile(value) {
+    return Objects.toString(value) === '[object File]';
+  }
+  /**
+   * Checks whether the specified value is a `FormData` object.
+   *
+   * **Usage Examples:**
+   * ```typescript
+   * const formData = new FormData();
+   * formData.append('a', 'abc');
+   * Utils.isFormData(formData); // true
+   * ```
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a `FormData` object.
+   */
+  function isFormData(value) {
+    return Objects.toString(value) === '[object FormData]';
+  }
+  /**
+   * Checks whether the given value is a function.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is a function.
+   */
+  function isFunction(value) {
+    return typeof value === 'function';
+  }
+  /**
+   * Checks whether the specified value is an iterable object.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is an iterable object.
+   */
+  function isIterable(value) {
+    return isNotNil(value) && isFunction(value[Symbol.iterator]);
+  }
+  /**
+   * Checks whether the given value is neither `null` nor `undefined`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is neither `null` nor
+   * `undefined`.
+   */
+  function isNotNil(value) {
+    return isNullOrUndefined(value) === false;
+  }
+  /**
+   * Checks whether the given value is not `null`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is not `null`.
+   */
+  function isNotNull(value) {
+    return isNull(value) === false;
+  }
+  /**
+   * Checks whether the given value is not `undefined`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is not `undefined`.
+   */
+  function isNotUndefined(value) {
+    return isUndefined(value) === false;
+  }
+  /**
+   * Checks whether the given value is null.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is `null`.
+   */
+  function isNull(value) {
+    return value === null;
+  }
+  /**
+   * Checks whether the given value is `null` or `undefined`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is `null` or `undefined`.
+   */
+  function isNullOrUndefined(value) {
+    return isNull(value) || isUndefined(value);
+  }
+  /**
+   * Checks whether the given value is of primitive type. In JavaScript
+   * there are 7 primitive types: `string`, `number`, `bigint`, `boolean`,
+   * `undefined`, `symbol` and `null`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is of primitive type.
+   */
+  function isPrimitive(value) {
+    const type = typeof value;
+    return isNull(value) || [
+      'string',
+      'number',
+      'bigint',
+      'boolean',
+      'symbol',
+      'undefined',
+    ].includes(type);
+  }
+  /**
+   * Checks whether the specified value is a `Promise`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a JavaScript `promise`.
+   */
+  function isPromise(value) {
+    return Objects.toString(value) === '[object Promise]';
+  }
+  /**
+   * Checks whether the specified value is a `PromiseLike<T>` object.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a `PromiseLike<T>` object.
+   */
+  function isPromiseLike(value) {
+    return value && isFunction(value.then);
+  }
+  /**
+   * Checks whether the specified value is a regular expression.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a regular expression.
+   */
+  function isRegExp(value) {
+    return Objects.isObject(value) &&
+      Objects.toString(value) === '[object RegExp]';
+  }
+  /**
+   * Checks whether the specified value is a symbol.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the specified value is a symbol.
+   */
+  function isSymbol(value) {
+    return typeof value === 'symbol';
+  }
+  /**
+   * Checks whether the given value is not falsy i. e. not: `null`, `undefined`,
+   * `false`, `NaN`, `0`, `-0`, `0n` or `''`.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is not falsy.
+   */
+  function isTruthy(value) {
+    return isFalsy(value) === false;
+  }
+  /**
+   * Checks whether the given value is not defined.
+   *
+   * @param {*} value Contains some value.
+   * @return {Boolean} whether the given value is not defined.
+   */
+  function isUndefined(value) {
+    return value === void 0;
+  }
+
+  return {
+    isBoolean,
+    isDefined,
+    isError,
+    isFalsy,
+    isFile,
+    isFormData,
+    isFunction,
+    isIterable,
+    isNotNil,
+    isNotNull,
+    isNotUndefined,
+    isNull,
+    isNullOrUndefined,
+    isPrimitive,
+    isPromise,
+    isPromiseLike,
+    isRegExp,
+    isSymbol,
+    isTruthy,
+    isUndefined,
   }
 })();
 
@@ -4950,4 +5216,5 @@ module.exports = {
   Objects: Objects,
   Sets: Sets,
   Strings: Strings,
+  Utils: Utils,
 }
