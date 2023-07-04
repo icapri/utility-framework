@@ -158,7 +158,7 @@ Please contact me if you would like to contribute to utility-framework.
 
 ## Roadmap
 
-Latest stable: v1.0.3
+Latest stable: v1.0.4
 
 ## License
 

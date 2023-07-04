@@ -1,6 +1,6 @@
 {
   "name": "utility-framework",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A modern node framework for conversion, formatting, parsing, validation, and more.",
   "main": "./index.js",
   "scripts": {
