@@ -1,6 +1,3 @@
-/**
- * Defines an abstract class with array utilities.
- */
 var Arrays = (function () {
   /**
    * Adds the specified item to the beginning of the given array.
@@ -612,9 +609,6 @@ var Arrays = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with character utilities.
- */
 var Chars = (function () {
   /**
 * Contains the backslash escape character '`\`'.
@@ -1281,9 +1275,6 @@ var Chars = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with date utilities.
- */
 var Dates = (function () {
   /**
  * Contains the number of days in a year.
@@ -2092,9 +2083,6 @@ var Dates = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with map utilities.
- */
 var Maps = (function () {
   /**
    * Checks whether the given map is empty.
@@ -2168,9 +2156,6 @@ var Maps = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with number utilities.
- */
 var Numbers = (function () {
   /**
    * Gets the absolute value of the given number.
@@ -2346,9 +2331,6 @@ var Numbers = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with object utilities.
- */
 var Objects = (function () {
   /**
    * Contains an empty object.
@@ -2694,9 +2676,6 @@ var Objects = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with set utilities.
- */
 var Sets = (function () {
   /**
    * Checks whether the given set is empty.
@@ -2760,9 +2739,6 @@ var Sets = (function () {
   }
 })();
 
-/**
- * Defines an abstract class with string utilities.
- */
 var Strings = (function () {
   /**
    * Contains an empty string.
@@ -4999,9 +4975,6 @@ var Strings = (function () {
   }
 })();
 
-/**
- * Defines a base utility class.
- */
 var Utils = (function () {
   /**
    * Checks whether the given value is of boolean type.
@@ -5239,13 +5212,22 @@ var Utils = (function () {
 })();
 
 module.exports = {
+  /** Defines an interface with array utilities. */
   Arrays: Arrays,
+  /** Defines an interface with character utilities. */
   Chars: Chars,
+  /** Defines an interface with date utilities. */
   Dates: Dates,
+  /** Defines an interface with map utilities. */
   Maps: Maps,
+  /** Defines an interface with number utilities. */
   Numbers: Numbers,
+  /** Defines an interface with object utilities. */
   Objects: Objects,
+  /** Defines an interface with set utilities. */
   Sets: Sets,
+  /** Defines an interface with string utilities. */
   Strings: Strings,
+  /** Defines a base utility class. */
   Utils: Utils,
 }
