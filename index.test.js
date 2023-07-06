@@ -1,4 +1,4 @@
-const { Arrays, Chars, Dates, Maps, Numbers, Objects, Sets, Strings, Utils } = require('./index');
+const { Arrays, Chars, Dates, Maps, Numbers, Objects, Sets, Strings, Utils } = require('./index.min');
 const assert = require('assert').strict;
 
 describe('Arrays', () => {

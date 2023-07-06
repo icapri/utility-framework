@@ -1836,7 +1836,7 @@ var Dates = (function () {
    * ISO 8601 date string; otherwise `null`.
    */
   function parseISO(str) {
-    if (!Strings.isString(str) || str.length === 0) {
+    if (!Strings.isString(str) || Strings.isEmpty(str)) {
       return null;
     }
     const iso = str.trim(), len = iso.length;
@@ -3054,10 +3054,7 @@ var Strings = (function () {
    * @return {String} the decapitalized string.
    */
   function decapitalize(str) {
-    if (str.length === 0) {
-      return EMPTY;
-    }
-    return str.charAt(0).toLowerCase() + str.slice(1);
+    return isEmpty(str) ? EMPTY : str.charAt(0).toLowerCase() + str.slice(1);
   }
   /**
    * Decodes a string encoded using Base64.
@@ -3159,9 +3156,17 @@ var Strings = (function () {
    */
   function encode(str, lineBreak = false) {
     let i = 0, mod3 = 2, encoded = '', u24 = 0;
-    const bytes = toBytesArray(str), l = bytes.length;
-    const $ = (u6) => u6 < 26 ? u6 + 65 : u6 < 52 ? u6 + 71 :
-      u6 < 62 ? u6 - 4 : u6 === 62 ? 43 : u6 === 63 ? 47 : 65;
+    const bytes = toBytesArray(str), l = bytes.length, $ = (u6) => u6 < 26
+      ? u6 + 65
+      : u6 < 52
+      ? u6 + 71
+      : u6 < 62
+      ? u6 - 4
+      : u6 === 62
+      ? 43
+      : u6 === 63
+      ? 47
+      : 65;
     while (i < l) {
       mod3 = i % 3;
       if (lineBreak && i > 0 && ((i * 4) / 3) % 76 === 0) {
@@ -3195,7 +3200,7 @@ var Strings = (function () {
    * substring.
    */
   function endsWith(str, substring, ignoreCase) {
-    ignoreCase !== null && ignoreCase !== void 0 ? ignoreCase : (ignoreCase = false);
+    ignoreCase ??= false;
     if (ignoreCase) {
       return str.toLowerCase().endsWith(substring.toLowerCase());
     }
@@ -3781,7 +3786,7 @@ var Strings = (function () {
    * @see `Strings.isBlank()`
    */
   function isEmpty(str) {
-    return str.length === 0;
+    return str === '';
   }
   /**
    * Checks whether all the characters of the specified string are
@@ -4373,7 +4378,7 @@ var Strings = (function () {
    * @return {String} the string without the specified substring occurrences.
    */
   function remove(str, substring) {
-    if (substring.length === 0)
+    if (isEmpty(substring))
       return str;
     let i = 0, r = '';
     const m = str.length, n = substring.length;
@@ -4821,7 +4826,7 @@ var Strings = (function () {
    * @return {String} the title case string.
    */
   function toTitleCase(str) {
-    if (str.length === 0) {
+    if (isEmpty(str)) {
       return str;
     }
     let i = 0, r = EMPTY, c, s, p;

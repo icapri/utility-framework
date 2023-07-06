@@ -1,8 +1,8 @@
 {
   "name": "utility-framework",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A modern node framework for conversion, formatting, parsing, validation, and more.",
-  "main": "./index.js",
+  "main": "./index.min.js",
   "scripts": {
     "test": "mocha index.test.js"
   },
@@ -33,10 +33,9 @@
   },
   "homepage": "https://github.com/icapri/utility-framework#readme",
   "files": [
-    "index.js"
+    "index.min.js"
   ],
   "devDependencies": {
-    "mocha": "^10.2.0",
-    "request": "^2.88.2"
+    "mocha": "^10.2.0"
   }
 }
